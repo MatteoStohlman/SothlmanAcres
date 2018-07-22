@@ -15,6 +15,7 @@ import getUnitName from 'Static/units'
   import SvgIcon from 'material-ui/SvgIcon';
 //ACTIONS//
   import {updateProducts} from 'Actions/Products'
+  import {addToCart} from 'Actions/Cart'
 //HOC//
   import Loading from 'HOC/Loading'
   import Mobile from 'HOC/mobile'
@@ -35,6 +36,7 @@ import getUnitName from 'Static/units'
 const COMPONENT_NAME = ({
   //REDUX
     products,
+    addToCart,
   //STATE
     activeProductId,updateActiveProductId,
   //PROPS
@@ -53,18 +55,18 @@ const COMPONENT_NAME = ({
           title:prod.name,
           price:"$"+prod.price+" /"+getUnitName(prod['unit-2']),
           description:prod.description,
-          featured:categoryProducts.length<=2
+          featured:categoryProducts.length<=1,
+          product:prod,
         }
       }
     })
-    console.log(products,tiles);
     return tiles
   }
   if(!products.data.length || !category)return(null)
   return (
     <div>
       <GridList
-        cols={3}
+        cols={4}
         cellHeight={200}
         padding={5}
         style={styles.gridList}
@@ -72,7 +74,11 @@ const COMPONENT_NAME = ({
         {createTiles().map((tile) => (
           <GridTile
             key={tile.img}
-            title={<span>{tile.title} <FA className='addToCartIcon' name='cart-plus'/></span>}
+            title={
+              <span onClick={()=>addToCart(tile.id,category._id,1)}>
+                {tile.title}
+                <FA className='addToCartIcon' size='2x' name='cart-plus' style={{position:'absolute',right:5,top:5}}/>
+              </span>}
             subtitle={<span>{tile.price}</span>}
             actionPosition="left"
             titlePosition="top"
@@ -114,6 +120,7 @@ const mapStateToProps = state => ({
 function matchDispatchToProps(dispatch){
   return  bindActionCreators({
     updateProducts:updateProducts,
+    addToCart:addToCart,
   },dispatch)
 }
 

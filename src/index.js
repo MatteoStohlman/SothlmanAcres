@@ -9,6 +9,7 @@ import createHistory from 'history/createBrowserHistory'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import 'react-table/react-table.css'
 import theme from 'theme.js'
 // Import all of our components
 import App from './App'

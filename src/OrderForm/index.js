@@ -11,6 +11,7 @@ import muiThemeable from 'material-ui/styles/muiThemeable';
 
   import CategoriesSidebar from './CategoriesSidebar'
   import ProductsGrid from './ProductsGrid'
+  import Cart from './Cart'
 //ACTIONS//
   import {updateCategories} from 'Actions/Categories'
 //HOC//
@@ -30,8 +31,9 @@ const COMPONENT_NAME = ({
 })=> {
   return (
     <Row style={{overflow:'hidden'}}>
-      <div style={{width:'20%',height:'100%',position:'absolute',top:0,left:0}}><CategoriesSidebar onChange={(selectedCategory)=>updateCategory(selectedCategory)}/></div>
-      <div style={{width:'80%',height:'100%',position:'absolute',top:0,left:'20%'}}><ProductsGrid category={category}/></div>
+      <div style={{width:'20%',height:'500px',position:'absolute',top:0,left:0}}><CategoriesSidebar onChange={(selectedCategory)=>updateCategory(selectedCategory)}/></div>
+      <div style={{width:'80%',height:'500px',position:'absolute',top:0,left:'20%'}}><ProductsGrid category={category}/></div>
+      <div style={{width:'100%',height:'300px',position:'absolute',bottom:0,left:0}}><Cart/></div>
     </Row>
   )
 }
