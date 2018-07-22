@@ -10,7 +10,7 @@ function* placeOrderFlow(action){
 
     const response = yield call(placeOrder,action)
     if(response.success){
-      yield put({type:'CART_PLACE_ORDER_SUCC'})
+      yield put({type:'CART_PLACE_ORDER_SUCC',orderId:response.orderNumber})
     }
 
   } catch (error) {

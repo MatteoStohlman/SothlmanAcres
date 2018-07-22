@@ -11,7 +11,7 @@ import {getProductEntity} from 'Static/utils'
   import { InputNumber } from 'antd';
   import OrderForm from './OrderForm'
 //ACTIONS//
-  import {removeFromCart,updateCartItem} from 'Actions/Cart'
+  import {removeFromCart,updateCartItem,resetCart} from 'Actions/Cart'
 //HOC//
   import Loading from 'HOC/Loading'
   import Mobile from 'HOC/mobile'
@@ -20,7 +20,7 @@ import {getProductEntity} from 'Static/utils'
 const COMPONENT_NAME = ({
   //REDUX
     cart,products,categories,
-    removeFromCart,updateCartItem,
+    removeFromCart,updateCartItem,resetCart,
   //STATE
 
   //PROPS
@@ -80,6 +80,14 @@ const COMPONENT_NAME = ({
   ]
   var rowData = generateData()
   var orderTotal = getTotal()
+  if(cart.orderComplete){
+    return(
+      <div style={{padding:60,backgroundColor:'lightgray'}}>
+        <h1 style={{color:'green'}}>Order Complete!</h1>
+        <p>Order Number: {cart.orderComplete}</p>
+      </div>
+    )
+  }
   if(rowData.length){
     return (
       <div style={{maxWidth:750,marginTop:30,marginLeft:15,marginRight:15}}>
@@ -117,6 +125,7 @@ function matchDispatchToProps(dispatch){
   return  bindActionCreators({
     removeFromCart:removeFromCart,
     updateCartItem:updateCartItem,
+    resetCart:resetCart,
   },dispatch)
 }
 

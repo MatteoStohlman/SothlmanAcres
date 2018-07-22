@@ -31,3 +31,9 @@ export function placeOrder(name,email,phone,cart){
 		cart
 	}
 }
+
+export function resetCart(){
+	return{
+		type:'RESET_CART'
+	}
+}

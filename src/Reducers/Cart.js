@@ -1,5 +1,7 @@
 const initialState = {
-  data:[]
+  data:[],
+  orderComplete:false,
+  orderFailed:false,
 }
 
 //Cart Item
@@ -43,7 +45,17 @@ const reducer = function loginReducer (state = initialState, action) {
           ...state,
           data:newData
         }
-
+      case 'CART_PLACE_ORDER_SUCC':
+        var newData=[]
+        return {
+          ...state,
+          data:newData,
+          orderComplete:action.orderId
+        }
+      case 'RESET_CART':
+        return {
+          initialState
+        }
     default:
       return state
   }
