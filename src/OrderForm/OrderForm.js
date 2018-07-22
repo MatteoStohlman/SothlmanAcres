@@ -4,11 +4,12 @@ import {bindActionCreators} from 'redux';
 import {withState,compose,withProps,lifecycle} from 'recompose';
 import PropTypes from 'prop-types';
 import muiThemeable from 'material-ui/styles/muiThemeable';
+import {getProductName,getCategoryName} from 'Static/utils'
 //COMPONENTS//
   import TextField from 'material-ui/TextField';
   import RaisedButton from 'material-ui/RaisedButton';
 //ACTIONS//
-  import {updateCategories} from 'Actions/Categories'
+  import {placeOrder} from 'Actions/Cart'
 //HOC//
   import Loading from 'HOC/Loading'
   import Mobile from 'HOC/mobile'
@@ -16,52 +17,65 @@ import muiThemeable from 'material-ui/styles/muiThemeable';
   import './style.css'
 const COMPONENT_NAME = ({
   //REDUX
-    categories,
+    cart,products,categories,
+    placeOrder,
   //STATE
-    category,updateCategory,
+  name,updateName,
+  email,updateEmail,
+  phone,updatePhone,
   //PROPS
 
   //OTHER
   muiTheme,isMobile,...props
 })=> {
+  function generateCart(){
+    return cart.data.map((item)=>{
+      return{
+        ...item,
+        productName:getProductName(item.productId,products),
+        categoryName:getProductName(item.categoryId,categories)
+      }
+    })
+  }
   return (
     <div style={{width:'100%'}}>
       <TextField
         floatingLabelText="Name"
         style={{maxWidth:'33%'}}
+        onChange={(e,value)=>updateName(value)}
       />
       <TextField
         floatingLabelText="Email"
         style={{maxWidth:'33%'}}
+        onChange={(e,value)=>updateEmail(value)}
       />
       <TextField
         floatingLabelText="Phone Number"
         style={{maxWidth:'33%'}}
+        onChange={(e,value)=>updatePhone(value)}
       />
-      <RaisedButton label="Place Order" secondary={true} style={{color:'white',float:'right'}}/>
+    <RaisedButton label="Place Order" secondary={true} style={{color:'white',float:'right'}} onClick={()=>placeOrder(name,email,phone,generateCart())}/>
     </div>
   )
 }
 
 const mapStateToProps = state => ({
-  categories:state.categories
+  cart:state.cart,
+  categories:state.categories,
+  products:state.products,
 })
 function matchDispatchToProps(dispatch){
   return  bindActionCreators({
-    updateCategories:updateCategories,
+    placeOrder:placeOrder,
   },dispatch)
 }
 
 export default compose(
   Mobile(),
-  withState('category','updateCategory',null),
+  withState('name','updateName',false),
+  withState('email','updateEmail',false),
+  withState('phone','updatePhone',false),
   connect(mapStateToProps,matchDispatchToProps),
-  withProps(props=>{return{loading:false}}),
-  lifecycle({
-    componentDidMount(){
-      this.props.updateCategories()
-    }
-  }),
   muiThemeable(),
   //withState('activeTab','updateActiveTab','search')
 )(COMPONENT_NAME)

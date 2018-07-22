@@ -18,7 +18,7 @@ const reducer = function loginReducer (state = initialState, action) {
         }
       })
       if(!existingItem){
-        newData.push({productId:action.productId,actionId:action.categoryId,quantity:action.quantity})
+        newData.push({productId:action.productId,categoryId:action.categoryId,quantity:action.quantity})
       }
       return {
         ...state,

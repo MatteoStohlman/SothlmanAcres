@@ -21,3 +21,13 @@ export function updateCartItem(productId,updateObj){
 		newValue:updateObj
 	}
 }
+
+export function placeOrder(name,email,phone,cart){
+	return{
+		type: 'CART_PLACE_ORDER_REQ',
+		name,
+		email,
+		phone,
+		cart
+	}
+}

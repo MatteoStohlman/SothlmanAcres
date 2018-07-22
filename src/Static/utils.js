@@ -13,3 +13,10 @@ export function getProductEntity(id,products){
     return false
   }
 }
+export function getCategoryName(id,categories){
+  try{
+    return categories.data.filter((cat)=>cat._id==id)[0]
+  }catch(e){
+    return false
+  }
+}
