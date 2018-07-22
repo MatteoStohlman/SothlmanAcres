@@ -32,7 +32,7 @@ const COMPONENT_NAME = ({
   return (
     <Row style={{overflow:'hidden'}}>
       <div style={{width:'20%',height:'500px',position:'absolute',top:0,left:0}}><CategoriesSidebar onChange={(selectedCategory)=>updateCategory(selectedCategory)}/></div>
-      <div style={{width:'80%',height:'500px',position:'absolute',top:0,left:'20%'}}><ProductsGrid category={category}/></div>
+      {categories.data.length && <div style={{width:'80%',height:'500px',position:'absolute',top:0,left:'20%'}}><ProductsGrid category={category}/></div>}
       <div style={{width:'100%',height:'300px',position:'absolute',top:525,left:0}}><Cart/></div>
     </Row>
   )

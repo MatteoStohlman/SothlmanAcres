@@ -90,7 +90,7 @@ const COMPONENT_NAME = ({
   }
   if(rowData.length){
     return (
-      <div style={{maxWidth:750,marginTop:30,marginLeft:15,marginRight:15}}>
+      <div style={{maxWidth:'90%',marginTop:30,marginLeft:15,marginRight:15}}>
         <ReactTable
           data={generateData()}
           columns={columns}

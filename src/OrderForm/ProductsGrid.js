@@ -35,7 +35,7 @@ import getUnitName from 'Static/units'
   };
 const COMPONENT_NAME = ({
   //REDUX
-    products,
+    products,categories,
     addToCart,
   //STATE
     activeProductId,updateActiveProductId,
@@ -45,7 +45,12 @@ const COMPONENT_NAME = ({
   muiTheme,isMobile,...props
 })=> {
   function createTiles(){
-    if(!products.data.length){return []}
+    var targetCatId = false;
+    if(!products.data.length){
+      targetCatId=categories[0]._id
+    }else{
+      targetCatId = category._id
+    }
     var categoryProducts = products.data.filter((prod)=>prod['belongs-to-category']==category._id)
     var tiles =  categoryProducts.map((prod,index)=>{
       if(category && prod['belongs-to-category']==category._id){
@@ -115,7 +120,8 @@ const COMPONENT_NAME = ({
 }
 
 const mapStateToProps = state => ({
-  products:state.products
+  products:state.products,
+  categories:state.categories
 })
 function matchDispatchToProps(dispatch){
   return  bindActionCreators({
