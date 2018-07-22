@@ -1,12 +1,9 @@
+import {baseURL} from './CONST'
 export function getCategories(userId,month,year){
-  var requestUrl = 'https://cors-anywhere.herokuapp.com/https://api.webflow.com/collections/5b52827a45c6a39fde49d95c/items'
+  var requestUrl = baseURL+'https://api.webflow.com/collections/5b52827a45c6a39fde49d95c/items'
 
   return fetch(requestUrl,{
                             method: 'GET',
-                            headers:{
-                              Authorization:'Bearer d5d6a8c26c0eff911c7a9872a5489bd978303565937173edac0f518bbb9128e0',
-                              'accept-version':'1.0.0',
-                            }
                           })
           .then(response => {
             if (!response.ok) {
