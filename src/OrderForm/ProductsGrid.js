@@ -64,7 +64,7 @@ const COMPONENT_NAME = ({
   return (
     <div>
       <GridList
-        cols={4}
+        cols={3}
         cellHeight={200}
         padding={5}
         style={styles.gridList}
