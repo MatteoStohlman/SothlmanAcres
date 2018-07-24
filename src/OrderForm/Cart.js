@@ -5,6 +5,8 @@ import {withState,compose,withProps,lifecycle} from 'recompose';
 import PropTypes from 'prop-types';
 import muiThemeable from 'material-ui/styles/muiThemeable';
 import {getProductEntity} from 'Static/utils'
+import numeral from 'numeral'
+import {formatCurrency} from 'Static/formats'
 //COMPONENTS//
   import ReactTable from 'react-table'
   import FA from 'react-fontawesome'
@@ -31,7 +33,7 @@ const COMPONENT_NAME = ({
   function getTotal(){
     var total=0;
     rowData.map((item)=>total+=item.totalPrice)
-    return "$"+total
+    return total
   }
   function generateData(){
     if(!cart.data.length)return []
@@ -66,11 +68,11 @@ const COMPONENT_NAME = ({
     },{
       Header: 'Unit Price',
       id: 'unitPrice',
-      accessor:(row)=>'$'+row.unitPrice
+      accessor:(row)=>formatCurrency(row.unitPrice)
     },{
       Header: 'Total Price',
       id: 'totalPrice',
-      accessor:(row)=>'$'+row.totalPrice
+      accessor:(row)=>formatCurrency(row.totalPrice)
     },{
       Header:'',
       width:22,
@@ -105,7 +107,7 @@ const COMPONENT_NAME = ({
             Total
           </span>
           <span style={{marginLeft:10}}>
-            {orderTotal}
+            {formatCurrency(orderTotal)}
           </span>
         </div>
       </div>
