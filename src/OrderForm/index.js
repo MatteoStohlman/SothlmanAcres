@@ -58,9 +58,9 @@ const COMPONENT_NAME = ({
           </Badge>
         </Animated>
       </div>
-      <Drawer onRequestChange={(open) => updateIsCartOpen(open)} docked={false} width={window.innerWidth*.8} openSecondary={true} open={isCartOpen} >
+      <Drawer onRequestChange={(open) => updateIsCartOpen(open)} docked={false} width={window.innerWidth*.95} openSecondary={true} open={isCartOpen} >
         <FA name='times' size='4x' style={{position:'absolute',right:5,top:5,zIndex:1,cursor:'pointer'}} onClick={()=>updateIsCartOpen(false)}/>
-        <div style={{width:'100%',position:'absolute',top:20,left:0}}><Cart/></div>
+        <div style={{width:'100%',position:'absolute',top:40,left:0}}><Cart/></div>
       </Drawer>
     </div>
   )

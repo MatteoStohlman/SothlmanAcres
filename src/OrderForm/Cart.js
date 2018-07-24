@@ -60,18 +60,20 @@ const COMPONENT_NAME = ({
           <br/>
           <small>{row.description}</small>
         </span>,
-      minWidth:450
+      minWidth:375
     },{
       Header: 'Quantity',
       id:'quantity',
       accessor: (row)=><InputNumber min={1} max={50} value={row.quantity} onChange={(value)=>updateCartItem(row.productId,{quantity:value})} />
     },{
-      Header: 'Unit Price',
+      Header: 'Unit $',
       id: 'unitPrice',
+      maxWidth:70,
       accessor:(row)=>formatCurrency(row.unitPrice)
     },{
-      Header: 'Total Price',
+      Header: 'Total $',
       id: 'totalPrice',
+      maxWidth:70,
       accessor:(row)=>formatCurrency(row.totalPrice)
     },{
       Header:'',
@@ -91,7 +93,7 @@ const COMPONENT_NAME = ({
     )
   }
   return (
-    <div style={{maxWidth:'90%',marginTop:30,marginLeft:15,marginRight:15}}>
+    <div style={{maxWidth:'100%',marginTop:30,marginLeft:15,marginRight:15}}>
       <ReactTable
         data={generateData()}
         columns={columns}
