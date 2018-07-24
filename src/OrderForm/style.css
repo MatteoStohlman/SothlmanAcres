@@ -26,3 +26,43 @@
   cursor: pointer; }
   .addToCartIcon:hover {
     color: lightgreen; }
+
+@-webkit-keyframes slideRightAndReset {
+  0%, 100% {
+    -webkit-transform: translateX(0); }
+  95% {
+    -webkit-transform: translateX(50px); } }
+
+@keyframes slideRightAndReset {
+  0%, 100% {
+    transform: translateX(0); }
+  95% {
+    transform: translateX(50px); } }
+
+@-webkit-keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    -webkit-transform: translateY(0); }
+  40% {
+    -webkit-transform: translateY(-30px); }
+  60% {
+    -webkit-transform: translateY(-20px); } }
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0); }
+  40% {
+    transform: translateY(-30px); }
+  60% {
+    transform: translateY(-20px); } }
+
+.slideRightAndReset {
+  -webkit-animation-duration: .5s;
+  animation-duration: .5s;
+  -webkit-animation-name: slideRightAndReset;
+  animation-name: slideRightAndReset; }
+
+.bounce {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-name: bounce;
+  animation-name: bounce; }

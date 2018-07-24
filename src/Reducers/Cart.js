@@ -2,6 +2,7 @@ const initialState = {
   data:[],
   orderComplete:false,
   orderFailed:false,
+  requesting:false,
 }
 
 //Cart Item
@@ -50,7 +51,14 @@ const reducer = function loginReducer (state = initialState, action) {
         return {
           ...state,
           data:newData,
-          orderComplete:action.orderId
+          orderComplete:action.orderId,
+          requesting:false,
+        }
+      case 'CART_PLACE_ORDER_REQ':
+        var newData=[]
+        return {
+          ...state,
+          requesting:true
         }
       case 'RESET_CART':
         return {

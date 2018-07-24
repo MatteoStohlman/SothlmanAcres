@@ -39,15 +39,16 @@ const COMPONENT_NAME = ({
     addToCart,
   //STATE
     activeProductId,updateActiveProductId,
+    animatedIcon,updateAnimatedIcon,
   //PROPS
-    category,
+    category,onCartAdd,
   //OTHER
   muiTheme,isMobile,...props
 })=> {
   function createTiles(){
     var targetCatId = false;
     if(!products.data.length){
-      targetCatId=categories[0]._id
+      targetCatId='5b5282cdeadb5885f2b7c55a'
     }else{
       targetCatId = category._id
     }
@@ -80,10 +81,11 @@ const COMPONENT_NAME = ({
           <GridTile
             key={tile.img}
             title={
-              <span onClick={()=>addToCart(tile.id,category._id,1)}>
-                {tile.title}
-                <FA className='addToCartIcon' size='2x' name='cart-plus' style={{position:'absolute',right:5,top:5}}/>
-              </span>}
+                <span onClick={()=>{addToCart(tile.id,category._id,1);onCartAdd();updateAnimatedIcon(tile.id)}}>
+                  {tile.title}
+                  <FA className={"addToCartIcon "+(tile.id==animatedIcon?'slideRightAndReset':'')} size='2x' name='cart-plus' style={{position:'absolute',right:5,top:5}}/>
+                </span>
+            }
             subtitle={<span>{tile.price}</span>}
             actionPosition="left"
             titlePosition="top"
@@ -132,6 +134,7 @@ function matchDispatchToProps(dispatch){
 
 export default compose(
   Mobile(),
+  withState('animatedIcon','updateAnimatedIcon',false),
   withState('activeProductId','updateActiveProductId',false),
   connect(mapStateToProps,matchDispatchToProps),
   lifecycle({

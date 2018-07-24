@@ -88,32 +88,30 @@ const COMPONENT_NAME = ({
       </div>
     )
   }
-  if(rowData.length){
-    return (
-      <div style={{maxWidth:'90%',marginTop:30,marginLeft:15,marginRight:15}}>
-        <ReactTable
-          data={generateData()}
-          columns={columns}
-          showPagination={false}
-          noDataText={'no items in your cart'}
-          className="-striped -highlight"
-          pageSize={rowData.length}
-          style={{marginBottom:10}}
-        />
-        <div style={{display:'block'}}>
-          <div style={{textAlign:'right',fontSize:24,marginRight:20,width:'100%'}}>
-            <span style={{fontWeight:'bold'}}>
-              Total
-            </span>
-            <span style={{marginLeft:10}}>
-              {orderTotal}
-            </span>
-          </div>
+  return (
+    <div style={{maxWidth:'90%',marginTop:30,marginLeft:15,marginRight:15}}>
+      <ReactTable
+        data={generateData()}
+        columns={columns}
+        showPagination={false}
+        noDataText={'no items in your cart'}
+        className="-striped -highlight"
+        pageSize={rowData.length}
+        style={{marginBottom:10}}
+      />
+      <div style={{display:'block'}}>
+        <div style={{textAlign:'right',fontSize:24,marginRight:20,width:'100%'}}>
+          <span style={{fontWeight:'bold'}}>
+            Total
+          </span>
+          <span style={{marginLeft:10}}>
+            {orderTotal}
+          </span>
         </div>
-        <OrderForm/>
       </div>
-    )
-  }else{return null}
+      <OrderForm/>
+    </div>
+  )
 }
 
 const mapStateToProps = state => ({

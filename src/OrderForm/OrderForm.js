@@ -8,6 +8,7 @@ import {getProductName,getCategoryName} from 'Static/utils'
 //COMPONENTS//
   import TextField from 'material-ui/TextField';
   import RaisedButton from 'material-ui/RaisedButton';
+  import FA from 'react-fontawesome'
 //ACTIONS//
   import {placeOrder} from 'Actions/Cart'
 //HOC//
@@ -36,6 +37,13 @@ const COMPONENT_NAME = ({
         categoryName:getProductName(item.categoryId,categories)
       }
     })
+  }
+  if(cart.requesting){
+    return(
+      <div style={{width:'100%',textAlign:'center',height:250}}>
+        <FA name='spinner' spin={true} size='5x'/>
+      </div>
+    )
   }
   return (
     <div style={{width:'100%'}}>
