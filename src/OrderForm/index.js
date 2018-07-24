@@ -42,8 +42,12 @@ const COMPONENT_NAME = ({
   }
   return (
     <div style={{overflow:'hidden'}}>
-      <div style={{width:'20%',height:'500px',position:'absolute',top:0,left:0}}><CategoriesSidebar onChange={(selectedCategory)=>{updateCategory(selectedCategory)}}/></div>
-      {categories.data.length && <div style={{width:'80%',height:'500px',position:'absolute',top:0,left:'20%'}}><ProductsGrid category={category?category:categories.data[0]} onCartAdd={()=>animateCart(!isCartAnimated)}/></div>}
+      <div style={{width:'20%',height:'500px',position:'absolute',top:100,left:0}}>
+        <CategoriesSidebar onChange={(selectedCategory)=>{updateCategory(selectedCategory)}}/>
+      </div>
+      <div style={{width:'80%',height:'500px',position:'absolute',top:100,left:'20%'}}>
+        <ProductsGrid category={category?category:categories.data[0]} onCartAdd={()=>animateCart(!isCartAnimated)}/>
+      </div>
       <div onClick={()=>updateIsCartOpen(true)} style={{position:'absolute',right:5,top:5,zIndex:1}}>
         <Animated animationIn="rubberBand" animationOut="jello" isVisible={isCartAnimated}>
           <Badge

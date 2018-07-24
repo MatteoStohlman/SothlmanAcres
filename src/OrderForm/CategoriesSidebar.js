@@ -28,12 +28,13 @@ const COMPONENT_NAME = ({
     <div style={{width:'100%',height:'100vh',}}>
       {categories.data.length &&
         categories.data.map((cat,index)=>{
+          var isSelected = category?(category._id==cat._id?true:false):(index==0?true:false)
           return(
               <div
                 style={{padding:10}}
               >
                 <div
-                  className={'icon '+(category&& category._id==cat._id?'selected':'')}
+                  className={'icon '+(isSelected?'selected':'')}
                   style={{
                     backgroundImage:'url('+cat.icon.url+')',
                   }}
