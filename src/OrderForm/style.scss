@@ -9,6 +9,9 @@
     background-color: lightgray;
     border: 10px solid lightgray;
   }
+  &.selected{
+    background-color: lightgray;
+  }
 }
 .categoryLabel{
   transform: rotate(-90deg) translate(-30%, 957%);

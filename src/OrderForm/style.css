@@ -8,6 +8,8 @@
   .icon:hover {
     background-color: lightgray;
     border: 10px solid lightgray; }
+  .icon.selected {
+    background-color: lightgray; }
 
 .categoryLabel {
   transform: rotate(-90deg) translate(-30%, 957%);

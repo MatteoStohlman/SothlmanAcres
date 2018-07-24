@@ -32,24 +32,14 @@ const COMPONENT_NAME = ({
               <div
                 style={{padding:10}}
               >
-                {/*}<button
-                  class="snipcart-add-item"
-                  data-item-id="2"
-                  data-item-name="Bacon"
-                  data-item-price="3.00"
-                  data-item-weight="20"
-                  data-item-url="/"
-                  data-item-description="Some fresh bacon">
-                      Buy bacon
-                </button>*/}
                 <div
-                  className='icon'
+                  className={'icon '+(category&& category._id==cat._id?'selected':'')}
                   style={{
                     backgroundImage:'url('+cat.icon.url+')',
                   }}
-                  onClick={()=>onChange(cat)}
+                  onClick={()=>{onChange(cat);updateCategory(cat)}}
                 >
-                  
+
                 </div>
               </div>
           )
