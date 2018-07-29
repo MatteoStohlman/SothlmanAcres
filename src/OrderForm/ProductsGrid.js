@@ -52,7 +52,11 @@ const COMPONENT_NAME = ({
     }else{
       targetCatId = category._id
     }
-    var categoryProducts = products.data.filter((prod)=>prod['belongs-to-category']==category._id)
+    var categoryProducts = products.data.filter((prod)=>{
+      if(prod['belongs-to-category']==category._id){
+      }
+      return prod['belongs-to-category']==category._id
+    })
     var tiles =  categoryProducts.map((prod,index)=>{
       if(category && prod['belongs-to-category']==category._id){
         return {
@@ -69,6 +73,7 @@ const COMPONENT_NAME = ({
     return tiles
   }
   if(!products.data.length || !category)return(null)
+  var tiles = createTiles();
   return (
     <div>
       <GridList
@@ -77,9 +82,9 @@ const COMPONENT_NAME = ({
         padding={5}
         style={styles.gridList}
       >
-        {createTiles().map((tile) => (
+        {tiles.map((tile) => (
           <GridTile
-            key={tile.img}
+            key={tile.id}
             title={
                 <span onClick={()=>{addToCart(tile.id,category._id,1);onCartAdd();updateAnimatedIcon(tile.id)}}>
                   {tile.title}
