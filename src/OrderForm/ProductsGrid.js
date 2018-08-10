@@ -5,6 +5,7 @@ import {withState,compose,withProps,lifecycle,withPropsOnChange} from 'recompose
 import PropTypes from 'prop-types';
 import muiThemeable from 'material-ui/styles/muiThemeable';
 import getUnitName from 'Static/units'
+import moment from 'moment'
 //COMPONENTS//
   import SelectField from 'material-ui/SelectField';
   import MenuItem from 'material-ui/MenuItem';
@@ -67,6 +68,8 @@ const COMPONENT_NAME = ({
           description:prod.description,
           featured:categoryProducts.length<=1,
           product:prod,
+          availabilityDate:prod['availability-date']?prod['availability-date']:false,
+          byOrderOnly:prod['is-this-product-by-order-only']?prod['is-this-product-by-order-only']:false,
         }
       }
     })
@@ -77,7 +80,7 @@ const COMPONENT_NAME = ({
   return (
     <div>
       <GridList
-        cols={4}
+        cols={isMobile?1:4}
         cellHeight={200}
         padding={5}
         style={styles.gridList}
@@ -107,15 +110,30 @@ const COMPONENT_NAME = ({
                     position:'absolute',
                     bottom:0,
                     width:'100%',
-                    zIndex:1,
+                    zIndex:2,
                     color:'white',
                     padding:3,
-                    background:'linear-gradient(rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.4)',
+                    background:'linear-gradient(rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.5)',
                     transition: 'all 0.5s ease'
                   }}
                 >
                   {tile.description}
                 </span>
+              }
+              {(tile.availabilityDate || tile.byOrderOnly) &&
+                <span style={{position:'absolute',bottom:0,width:'100%',zIndex:1,backgroundColor:'#CD4250',fontWeight:'bold',paddingLeft:10,paddingRight:10}}>
+                  {tile. availabilityDate &&
+                    <span style={{float:'left'}}>
+                      Available {moment(tile.availabilityDate).format('MM/DD')}
+                    </span>
+                  }
+                  {tile.byOrderOnly &&
+                    <span style={{float:'right',textTransform:'uppercase'}}>
+                      PRE ORDER ONLY
+                    </span>
+                  }
+                </span>
+
               }
               <img src={tile.img} style={{height:'100%',transform:'translateX(-50%)',position:'relative',left:'50%'}}/>
             </span>

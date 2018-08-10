@@ -49,17 +49,17 @@ const COMPONENT_NAME = ({
     <div style={{width:'100%'}}>
       <TextField
         floatingLabelText="Name"
-        style={{maxWidth:'33%'}}
+        style={{maxWidth:isMobile?'100%':'33%'}}
         onChange={(e,value)=>updateName(value)}
       />
       <TextField
         floatingLabelText="Email"
-        style={{maxWidth:'33%'}}
+        style={{maxWidth:isMobile?'100%':'33%'}}
         onChange={(e,value)=>updateEmail(value)}
       />
       <TextField
         floatingLabelText="Phone Number"
-        style={{maxWidth:'33%'}}
+        style={{maxWidth:isMobile?'100%':'33%'}}
         onChange={(e,value)=>updatePhone(value)}
       />
     <RaisedButton label="Place Order" secondary={true} style={{color:'white',float:'right'}} onClick={()=>placeOrder(name,email,phone,generateCart())}/>
