@@ -45,7 +45,7 @@ const COMPONENT_NAME = ({
       <div style={{width:'35%',height:'500px',position:'absolute',top:100,left:0}}>
         <CategoriesSidebar onChange={(selectedCategory)=>{updateCategory(selectedCategory)}}/>
       </div>
-      <div style={{width:'65%',height:(isMobile?'100%':'500px'),position:'absolute',top:100,left:'35%',overflowY:'auto'}}>
+      <div style={{width:'65%',height:'500px',position:'absolute',top:100,left:'35%',overflowY:'auto'}}>
         <ProductsGrid category={category?category:categories.data[0]} onCartAdd={()=>animateCart(!isCartAnimated)}/>
       </div>
       <div onClick={()=>updateIsCartOpen(true)} style={{position:'absolute',right:5,top:5,zIndex:1}}>
