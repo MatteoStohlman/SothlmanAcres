@@ -28,6 +28,7 @@ const COMPONENT_NAME = ({
     <div style={{width:'100%',height:'100vh',}}>
       {categories.data.length &&
         categories.data.map((cat,index)=>{
+          if(!cat.isactive){return null}
           var isSelected = category?(category._id==cat._id?true:false):(index==0?true:false)
           return(
               <div

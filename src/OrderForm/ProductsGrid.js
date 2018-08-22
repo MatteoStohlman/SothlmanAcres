@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import muiThemeable from 'material-ui/styles/muiThemeable';
 import getUnitName from 'Static/units'
 import moment from 'moment'
+import {formatCurrency} from 'Static/formats'
 //COMPONENTS//
   import SelectField from 'material-ui/SelectField';
   import MenuItem from 'material-ui/MenuItem';
@@ -64,9 +65,9 @@ const COMPONENT_NAME = ({
           id:prod._id,
           img:prod['main-image'].url,
           title:prod.name,
-          price:"$"+prod.price+" /"+getUnitName(prod['unit-2']),
+          price:formatCurrency(prod.price)+" /"+getUnitName(prod['unit-2']),
           description:prod.description,
-          featured:categoryProducts.length<=1,
+          featured:categoryProducts.length<=2,
           product:prod,
           availabilityDate:prod['availability-date']?prod['availability-date']:false,
           byOrderOnly:prod['is-this-product-by-order-only']?prod['is-this-product-by-order-only']:false,
@@ -98,7 +99,7 @@ const COMPONENT_NAME = ({
             actionPosition="left"
             titlePosition="top"
             titleBackground="linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
-            cols={tile.featured ? 2 : 1}
+            cols={tile.featured ? 4 : 1}
             rows={tile.featured ? 2 : 1}
             onMouseEnter={()=>updateActiveProductId(tile.id)}
             onMouseLeave={()=>updateActiveProductId(false)}
