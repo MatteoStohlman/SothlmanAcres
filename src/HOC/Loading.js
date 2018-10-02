@@ -4,7 +4,7 @@ import RefreshIndicator from 'material-ui/RefreshIndicator';
 import {primary,secondary} from 'theme.js'
 const Loading=WrappedChild=>({loading,...props})=>{
   return(
-      <div>
+      <span>
         {loading &&
           <div style={{position:'fixed',zIndex:999999,width:'100vw',height:'100vh',top:0,left:0,backgroundColor:'rgb(0,0,0,.3)'}}>
             <span
@@ -32,7 +32,7 @@ const Loading=WrappedChild=>({loading,...props})=>{
           </div>
         }
         <WrappedChild {...props} loading={loading}/>
-      </div>
+      </span>
   )
 }
 export default Loading

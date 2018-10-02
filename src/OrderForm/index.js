@@ -14,6 +14,7 @@ import muiThemeable from 'material-ui/styles/muiThemeable';
   import {Animated} from "react-animated-css";
 
   import CategoriesSidebar from './CategoriesSidebar'
+  import CategoriesHeader from './CategoriesHeader'
   import ProductsGrid from './ProductsGrid'
   import Cart from './Cart'
 //ACTIONS//
@@ -42,10 +43,10 @@ const COMPONENT_NAME = ({
   }
   return (
     <div style={{overflow:'hidden'}}>
-      <div style={{width:'35%',height:'500px',position:'absolute',top:100,left:0}}>
-        <CategoriesSidebar onChange={(selectedCategory)=>{updateCategory(selectedCategory)}}/>
+      <div style={{width:'100%',height:'100px',marginBottom:10}}>
+        <CategoriesHeader onChange={(selectedCategory)=>{updateCategory(selectedCategory)}}/>
       </div>
-      <div style={{width:'65%',height:'500px',position:'absolute',top:100,left:'35%',overflowY:'auto'}}>
+      <div style={{width:'100%',height:'800px',overflowY:'auto',marginBottom:10}}>
         <ProductsGrid category={category?category:categories.data[0]} onCartAdd={()=>animateCart(!isCartAnimated)}/>
       </div>
       <div onClick={()=>updateIsCartOpen(true)} style={{position:'absolute',right:5,top:5,zIndex:1}}>
@@ -54,7 +55,7 @@ const COMPONENT_NAME = ({
             badgeContent={getTotalCartQuantity()}
             primary={true}
           >
-            <FA name='shopping-cart' size='4x'/>
+            <FA name='shopping-cart' style={{color:'white'}} size='4x'/>
           </Badge>
         </Animated>
       </div>

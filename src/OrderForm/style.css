@@ -3,13 +3,19 @@
   height: 100px;
   background-position: center;
   background-size: contain;
-  background-repeat: no-repeat;
-  border: 10px solid transparent; }
-  .icon:hover {
-    background-color: lightgray;
-    border: 10px solid lightgray; }
-  .icon.selected {
-    background-color: lightgray; }
+  background-repeat: no-repeat; }
+  .icon.inline {
+    width: 200px;
+    height: 100%; }
+
+.iconWrapper {
+  color: white;
+  border: 5px solid #2D3E4F; }
+  .iconWrapper:hover {
+    border: 5px solid #CF404D; }
+  .iconWrapper.selected {
+    background-color: #CF404D;
+    border: 5px solid #CF404D; }
 
 .categoryLabel {
   transform: rotate(-90deg) translate(-30%, 957%);

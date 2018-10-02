@@ -4,15 +4,24 @@
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
-  border: 10px solid transparent;
-  &:hover{
-    background-color: lightgray;
-    border: 10px solid lightgray;
-  }
-  &.selected{
-    background-color: lightgray;
+  &.inline{
+    width: 200px;
+    height: 100%;
   }
 }
+.iconWrapper{
+  color:white;
+  border: 5px solid #2D3E4F;
+  &:hover{
+    border:5px solid #CF404D;
+    //border: 10px solid lightgray;
+  }
+  &.selected{
+    background-color: #CF404D;
+    border:5px solid #CF404D;
+  }
+}
+
 .categoryLabel{
   transform: rotate(-90deg) translate(-30%, 957%);
   text-align: center;
