@@ -24,6 +24,39 @@ const COMPONENT_NAME = ({
   //OTHER
   muiTheme,isMobile,...props
 })=> {
+  console.log(category);
+  if(isMobile){
+    return(
+      <div style={{width:'100%',height:'100%',position:'relative',backgroundColor:'#2D3E4F'}}>
+        <SelectField
+          floatingLabelText="What type of meat?"
+          floatingLabelFixed
+          value={category?category._id:categories.data.length?categories.data.filter((cat)=>cat.name=='Pork')[0]._id:null}
+          menuItemStyle={{backgroundColor:'#2D3E4F',color:'white',height:50,lineHeight:'50px'}}
+          menuStyle={{backgroundColor:'#2D3E4F'}}
+          floatingLabelStyle={{color:'white'}}
+          labelStyle={{color:'white'}}
+          style={{backgroundColor:'#2D3E4F'}}
+          listStyle={{backgroundColor:'#2D3E4F'}}
+          onChange={(event,key,value)=>{
+            var selectedCategory = categories.data.filter((cat)=>cat._id==value)[0]
+            updateCategory(selectedCategory)
+            onChange(selectedCategory)
+          }}
+        >
+          {
+            categories.data.length &&
+              categories.data.map((cat,index)=>{
+                if(!cat.isactive){return null}
+                return(
+                  <MenuItem key={cat.name} value={cat._id} primaryText={cat.name} />
+                )
+              })
+          }
+        </SelectField>
+      </div>
+    )
+  }
   return (
     <div style={{width:'100%',height:'100%',position:'relative',backgroundColor:'#2D3E4F'}}>
       {categories.data.length &&
