@@ -27,9 +27,9 @@ const COMPONENT_NAME = ({
   console.log(category);
   if(isMobile){
     return(
-      <div style={{width:'100%',height:'100%',position:'relative',backgroundColor:'#2D3E4F'}}>
+      <div style={{width:'100%',height:'100%',position:'relative',backgroundColor:'#2D3E4F',paddingLeft:10}}>
         <SelectField
-          floatingLabelText="What type of meat?"
+          floatingLabelText="Select type of meat"
           floatingLabelFixed
           value={category?category._id:categories.data.length?categories.data.filter((cat)=>cat.name=='Pork')[0]._id:null}
           menuItemStyle={{backgroundColor:'#2D3E4F',color:'white',height:50,lineHeight:'50px'}}

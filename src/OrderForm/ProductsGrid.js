@@ -81,8 +81,8 @@ const COMPONENT_NAME = ({
   return (
     <div>
       <GridList
-        cols={isMobile?1:4}
-        cellHeight={200}
+        cols={isMobile?2:4}
+        cellHeight={isMobile?150:200}
         padding={5}
         style={styles.gridList}
       >
