@@ -39,14 +39,14 @@ const COMPONENT_NAME = ({
     if(!cart.data.length)return []
     return cart.data.map((item)=>{
       var product = getProductEntity(item.productId,products)
-      console.log(product);
       return{
         product:product.name,
         description:product.description,
         productId:product._id,
         quantity:item.quantity,
         unitPrice:product.price,
-        totalPrice:item.quantity*product.price,
+        totalPrice:item.quantity*product.price*product['estimate-packaged-weight'],
+        pricePerPackage:product['estimate-packaged-weight'],
       }
     })
   }
@@ -66,10 +66,15 @@ const COMPONENT_NAME = ({
       id:'quantity',
       accessor: (row)=><InputNumber min={1} max={50} value={row.quantity} onChange={(value)=>updateCartItem(row.productId,{quantity:value})} />
     },{
-      Header: 'Unit $',
+      Header: '$/lb',
       id: 'unitPrice',
       maxWidth:70,
       accessor:(row)=>formatCurrency(row.unitPrice)
+    },{
+      Header:'lbs/package',
+      id:'pricePerPackage',
+      maxWidth:70,
+      accessor:(row)=>row.pricePerPackage+"lbs/package"
     },{
       Header: 'Total $',
       id: 'totalPrice',
@@ -89,6 +94,7 @@ const COMPONENT_NAME = ({
       <div style={{padding:60,backgroundColor:'lightgray'}}>
         <h1 style={{color:'green'}}>Order Complete!</h1>
         <p>Order Number: {cart.orderComplete}</p>
+        <p>We are working on getting your order together. We will contact you with final pricing based on product weights and reach out to you as soon as possible.</p>
       </div>
     )
   }
@@ -112,6 +118,7 @@ const COMPONENT_NAME = ({
             {formatCurrency(orderTotal)}
           </span>
         </div>
+        <p style={{fontSize:12}}>* quoted price is an estimate based on products selected. As product is already packaged and weights vary this price is not the final price. We will contact you with a final price before any payment is required.</p>
       </div>
       <OrderForm/>
     </div>

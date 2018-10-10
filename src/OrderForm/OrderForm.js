@@ -64,7 +64,7 @@ const COMPONENT_NAME = ({
         style={{maxWidth:isMobile?'100%':'33%'}}
         onChange={(e,value)=>updatePhone(value)}
       />
-    {showWarning && <p style={{color:'red'}}>you must provide your full name and email or phone number to place and order</p>}
+    {showWarning && <p style={{color:'red'}}>you must provide your full name and email or phone number to place an order</p>}
     <RaisedButton label="Place Order" secondary={true} style={{color:'white',float:'right'}} onClick={()=>submitOrder(name,email,phone,generateCart())}/>
     </div>
   )
