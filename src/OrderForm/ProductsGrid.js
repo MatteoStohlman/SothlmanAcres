@@ -71,6 +71,7 @@ const COMPONENT_NAME = ({
           product:prod,
           availabilityDate:prod['availability-date']?prod['availability-date']:false,
           byOrderOnly:prod['is-this-product-by-order-only']?prod['is-this-product-by-order-only']:false,
+          outOfStock:prod['out-of-stock']?prod['out-of-stock']:false,
         }
       }
     })
@@ -90,7 +91,11 @@ const COMPONENT_NAME = ({
           <GridTile
             key={tile.id}
             title={
-                <span onClick={()=>{addToCart(tile.id,category._id,1);onCartAdd();updateAnimatedIcon(tile.id)}}>
+                <span onClick={()=>{
+                    if(!tile.outOfStock){
+                      addToCart(tile.id,category._id,1);onCartAdd();updateAnimatedIcon(tile.id)
+                    }
+                  }}>
                   {tile.title}
                   <FA className={"addToCartIcon "+(tile.id==animatedIcon?'slideRightAndReset':'')} size='2x' name='cart-plus' style={{position:'absolute',right:5,top:5}}/>
                 </span>
@@ -121,7 +126,7 @@ const COMPONENT_NAME = ({
                   {tile.description}
                 </span>
               }
-              {(tile.availabilityDate || tile.byOrderOnly) &&
+              {(tile.availabilityDate || tile.byOrderOnly || tile.outOfStock) &&
                 <span style={{position:'absolute',bottom:0,width:'100%',zIndex:1,backgroundColor:'#CD4250',fontWeight:'bold',paddingLeft:10,paddingRight:10}}>
                   {tile. availabilityDate &&
                     <span style={{float:'left'}}>
@@ -131,6 +136,11 @@ const COMPONENT_NAME = ({
                   {tile.byOrderOnly &&
                     <span style={{float:'right',textTransform:'uppercase'}}>
                       PRE ORDER ONLY
+                    </span>
+                  }
+                  {tile.outOfStock &&
+                    <span style={{float:'left'}}>
+                      Out of Stock
                     </span>
                   }
                 </span>
