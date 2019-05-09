@@ -10,6 +10,7 @@
   //COMPONENTS
     import { configureHistory } from 'configureHistory.js'
     import OrderForm from 'OrderForm'
+    import CuringRoom from 'CuringRoom'
 
 const history = configureHistory()
 class App extends Component {
@@ -19,6 +20,7 @@ class App extends Component {
           <Router history={history}>
             <div>
               <Route path='/' exact={true} component={OrderForm} />
+              <Route path='/salumi' exact={true} component={CuringRoom}/>
             </div>
           </Router>
         </div>
